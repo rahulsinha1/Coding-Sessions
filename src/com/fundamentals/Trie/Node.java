@@ -1,7 +1,5 @@
 package com.fundamentals.Trie;
 
-import java.util.TreeSet;
-
 public class Node {
     public Node[] getChildren() {
         return children;
@@ -19,15 +17,12 @@ public class Node {
         isEndOfWord = endOfWord;
     }
 
-    //TreeSet<Character> nodes;
-     Node [] children = new Node[26];
-     boolean isEndOfWord;
+    Node[] children = new Node[26];
+    boolean isEndOfWord;
 
     public Node() {
-       // this.nodes = new TreeSet<>(Character::compareTo);
         isEndOfWord = false;
-        for(int i=0; i<26;i++)
-        {
+        for (int i = 0; i < 26; i++) {
             children[i] = null;
         }
 
