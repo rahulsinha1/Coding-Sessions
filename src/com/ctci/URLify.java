@@ -19,7 +19,7 @@ public class URLify {
             }
         }
         sb.getChars(0,sb.length(),str,0);
-        return Arrays.toString(str);
+        return sb.toString();
     }
 
 
@@ -63,7 +63,9 @@ public class URLify {
     public static void main(String [] args)
     {
         URLify obj = new URLify();
+        System.out.println(obj.urlify("Mr John Smith    ", 13));
         System.out.println(obj.urlify2("Mr John Smith    ", 13));
     }
+
 }
  
