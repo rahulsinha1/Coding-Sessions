@@ -19,7 +19,11 @@ public class URLify {
             }
         }
         sb.getChars(0,sb.length(),str,0);
+<<<<<<< HEAD
         return Arrays.toString(str);
+=======
+        return sb.toString();
+>>>>>>> d8ce0bb43369e0d2e52e9b363afe5b14e17be3de
     }
 
 
@@ -63,7 +67,14 @@ public class URLify {
     public static void main(String [] args)
     {
         URLify obj = new URLify();
+<<<<<<< HEAD
         System.out.println(obj.urlify2("Mr John Smith    ", 13));
     }
+=======
+        System.out.println(obj.urlify("Mr John Smith    ", 13));
+        System.out.println(obj.urlify2("Mr John Smith    ", 13));
+    }
+
+>>>>>>> d8ce0bb43369e0d2e52e9b363afe5b14e17be3de
 }
  
