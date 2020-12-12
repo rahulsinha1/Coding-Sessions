@@ -35,11 +35,7 @@ public class UniqueCharacters {
         boolean flag = true;
         if(string.length() > 128)
         {
-<<<<<<< HEAD
-            return flag;
-=======
             return false;
->>>>>>> d8ce0bb43369e0d2e52e9b363afe5b14e17be3de
         }
 
         boolean[] existingChar = new boolean[128];
