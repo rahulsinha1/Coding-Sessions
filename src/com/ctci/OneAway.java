@@ -64,7 +64,7 @@ public class OneAway {
         String s2 = str1.length() < str2.length() ? str2 : str1;
         int index1 = 0, index2 = 0;
         boolean diff = false;
-        while (s1.length() < index1 && s2.length() <index2)
+        while (index1<s1.length() && index2<s2.length())
         {
             if(s1.charAt(index1) != s2.charAt(index2))
             {
