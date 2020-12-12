@@ -2,48 +2,107 @@ package com.ctci;
 
 public class OneAway {
 
-    private static final int SIZE = 26;
+
+    //Two differennt methods for replace & insertion/removal
     boolean checkOneAway(String str1, String str2)
     {
-        boolean result = true;
-        int [] freqFirstString = new int [SIZE];
-        int [] freqSecondString = new int [SIZE];
+       if (str1.length() == str2.length())
+       {
+           return oneEditReplace(str1,str2);
+       }
 
-        for (int i=0; i<str1.length();i++)
-        {
-            freqFirstString[str1.charAt(i)-'a']++;
-        }
+       else if(str1.length() + 1 == str2.length())
+       {
+           return oneEditInsert(str1,str2);
+       }
 
-        for (int i=0; i<str2.length();i++)
-        {
-            freqSecondString[str2.charAt(i)-'a']++;
-        }
-        int stringLength = (str1.length() > str2.length()) ? str1.length(): str2.length();
+       else if(str2.length() + 1 == str1.length())
+       {
+           return oneEditInsert(str2,str1);
+       }
+       return false;
+    }
 
-        int count =0;
-        for(int i=0;i<stringLength;i++)
+    boolean oneEditReplace(String str1, String str2)
+    {
+        boolean difference = false;
+        for(int i =0;i<str1.length();i++)
         {
-            if(freqFirstString[str1.charAt(i)-'a']!= freqSecondString[str1.charAt(i)-'a'])
+            if (str1.charAt(i) != str2.charAt(i))
             {
-                count++;
-                if(count>1)
+                if (difference)
                 {
-                    result = false;
-                    break;
+                    return false;
                 }
+                difference = true;
             }
         }
-        if(count == 0)
-        {
-            result = false;
-        }
-        return result;
+        return true;
     }
+
+    boolean oneEditInsert(String str1, String str2)
+    {
+        int index1=0;
+        int index2=0;
+        while(index1<str1.length() && index2 <str2.length())
+        {
+            if(str1.charAt(index1) != str2.charAt(index2) ) {
+                if(index1!=index2) {
+                    return false;
+                }
+                index2++;
+            }
+            else
+            {
+                index1++;
+                index2++;
+            }
+        }
+        return true;
+    }
+
+    //Another technique to solve the problem
+
+    boolean oneAway(String str1, String str2)
+    {
+        if(Math.abs(str1.length()-str2.length()) > 1)
+        {
+            return false;
+        }
+        String s1 = str1.length() < str2.length() ? str1:str2;
+        String s2 = str1.length() < str2.length() ? str2:str1;
+        int index1 =0, index2=0;
+        boolean difference = false;
+        while(index1<s1.length() && index2<s2.length())
+        {
+            if(s1.charAt(index1) != s2.charAt(index2))
+            {
+                if(difference)
+                    return false;
+                difference = true;
+                if(s1.length()== s2.length())
+                {
+                    index1++;
+                }
+            }
+            else
+            {
+                index1++;
+            }
+            index2++;
+        }
+
+        return true;
+    }
+
+
 
     public static void main(String [] args)
     {
         OneAway oneAway = new OneAway();
-        boolean result = oneAway.checkOneAway("pale","palei ");
+        boolean result = oneAway.checkOneAway("pae","pale");
+        System.out.println("Condition one away : "+ result);
+        result = oneAway.checkOneAway("pale","pake");
         System.out.println("Condition one away : "+ result);
     }
 }
