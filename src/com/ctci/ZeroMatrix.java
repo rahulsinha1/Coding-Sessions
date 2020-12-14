@@ -72,8 +72,8 @@ public class ZeroMatrix {
             throw new IllegalArgumentException("Not a valid matrix");
         }
 
-        boolean firstRowZero;
-        boolean firstColumnZero;
+        boolean firstRowZero = false;
+        boolean firstColumnZero = false;
 
         //Checking if first row has zero
         for(int j =0; j< matrix[0].length;j++)
@@ -125,12 +125,29 @@ public class ZeroMatrix {
             }
         }
 
+        // Checking and nullify the 1st row and columns
+
+        for (int i =0; i< matrix.length;i++)
+        {
+            if(firstRowZero)
+            {
+                nullifyRow(matrix,0);
+            }
+        }
+
+        for (int j =0; j< matrix[0].length;j++)
+        {
+            if(firstColumnZero)
+            {
+                nullifyColumn(matrix,0);
+            }
+        }
 
     }
 
     public static void main(String[] args) {
         ZeroMatrix z = new ZeroMatrix();
-        int[][] matrix = {{1, 2, 3,4}, {5, 0, 7, 8}, {9, 10, 11, 12}, {13, 14, 0, 16}};
+        int[][] matrix = {{1, 0, 3,4}, {5, 0, 7, 8}, {9, 10, 11, 12}, {13, 14, 0, 16}};
         printMatrix(matrix);
         z.zeroMatrix(matrix);
         System.out.println("After zero Matrix operation: \n");
